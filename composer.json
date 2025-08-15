@@ -1,0 +1,34 @@
+{
+    "name": "webflixtec/sdk-php-ezlink",
+    "description": "SDK da API do Ezlink",
+    "keywords": ["api", "library", "psr-4", "ezlink", "sdk"],
+    "homepage": "https://github.com/Webflix-Tecnologia/sdk-php-ezlink",
+    "type": "library",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Weslley Ceresa",
+            "email": "webflix.tecnologia@gmail.com",
+            "homepage": "https://www.webflix.tec.br"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "guzzlehttp/guzzle": "^7",
+        "spatie/array-to-xml": "^2.17",
+        "phpseclib/phpseclib": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ezlink\\": "src/"
+        }
+    },
+    "scripts": {
+        "test": []
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require-dev": {
+        "victorjonsson/markdowndocs": "^1.3"
+    }
+}
