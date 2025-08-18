@@ -9,7 +9,7 @@ $apiHotel = new Ezlink\Hotel\Api();
 $apiHotel
     ->setDeveloperKey($config['developerKey']);
 
-try{
+/*try{
     $responseSearch = $apiHotel->searchByDestinationOrHotelId([
         "checkIn" => "2025-08-16",
         "checkOut" => "2025-08-18",
@@ -30,9 +30,9 @@ try{
     var_dump($responseSearch);
 } catch (\Ezlink\Exceptions\EzlinkException $ex) {
     var_dump($ex);
-}
+}*/
 
-/*$apiStatic = new Ezlink\Static\Api();
+$apiStatic = new Ezlink\Static\Api();
 $apiStatic
     ->setDeveloperKey($config['developerKey']);
 
@@ -47,4 +47,4 @@ try{
     var_dump($responseDestinations);
 } catch (\Ezlink\Exceptions\EzlinkException $ex) {
     var_dump($ex);
-}*/
+}
