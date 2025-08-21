@@ -106,11 +106,11 @@ class Api extends \Ezlink\Core\EzlinkStatic {
                 'order' => 'asc',
                 'countryISO2' => $body['country'],
             ]);
-            $busca = $body['VariationsHotelsSearched'];
+            $city = $body['city'];
             [$hotelListResults, $totalAfterFilter] = $resultHotel->hotelListResponse;
             if ($totalAfterFilter > 0) {
                 foreach ($hotelListResults->hotels as $index => $hotel) {
-                    if (in_array($hotel->name, $busca)) {
+                    if (str_contains($hotel->name, $city)) {
                         $destino = $hotel;
                         break;
                     }
@@ -152,11 +152,12 @@ class Api extends \Ezlink\Core\EzlinkStatic {
                 'order' => 'asc',
                 'countryISO2' => $body['country'],
             ]);
-            $busca = $body['VariationsDestiniesSearched'];
-            [$destinationListResults, $totalAfterFilter] = $resultDestination->destinationListResponse;
+            $city = $body['city'];
+            $destinationListResults = $resultDestination->destinationListResponse->destinationListResults;
+            $totalAfterFilter = $resultDestination->destinationListResponse->totalAfterFilter;
             if ($totalAfterFilter > 0) {
                 foreach ($destinationListResults->destinations as $index => $destination) {
-                    if (in_array($destination->name, $busca)) {
+                    if (str_contains($destination->name, $city)) {
                         $destino = $destination;
                         break;
                     }
@@ -194,9 +195,9 @@ class Api extends \Ezlink\Core\EzlinkStatic {
             $destino = $this->searchHotel($body);
             if($destino) {
                 $apiHotel = new \Ezlink\Hotel\Api();
-                return $apiHotel->searchByDestinationOrHotelId([
+                return $apiHotel->setDeveloperKey($this->getDeveloperKey())->searchByDestinationOrHotelId([
                     'checkIn' => $body['checkIn'],
-                    'checkOut' => $body['checkIn'],
+                    'checkOut' => $body['checkOut'],
                     'hotelIds' => [$destino->id],
                     'nationality' => $body['nationality'],
                     'timeout' => 15000,
@@ -235,9 +236,9 @@ class Api extends \Ezlink\Core\EzlinkStatic {
             $destino = $this->searchDestination($body);
             if($destino) {
                 $apiHotel = new \Ezlink\Hotel\Api();
-                return $apiHotel->searchByDestinationOrHotelId([
+                return $apiHotel->setDeveloperKey($this->getDeveloperKey())->searchByDestinationOrHotelId([
                     'checkIn' => $body['checkIn'],
-                    'checkOut' => $body['checkIn'],
+                    'checkOut' => $body['checkOut'],
                     'destinationId' => $destino->id,
                     'nationality' => $body['nationality'],
                     'timeout' => 15000,

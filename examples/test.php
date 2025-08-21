@@ -37,14 +37,34 @@ $apiStatic
     ->setDeveloperKey($config['developerKey']);
 
 try{
-    $responseDestinations = $apiStatic->destinations([
+    /*$responseDestinations = $apiStatic->destinations([
         'skip' => 0,
         'limit' => 5,
         'order' => 'desc',
         'countryISO2' => 'br',
     ]);
     echo json_encode($responseDestinations);
-    var_dump($responseDestinations);
+    var_dump($responseDestinations);*/
+    $responseHotel = $apiStatic->searchByHotelInDestination([
+        "checkIn" => "2025-08-22",
+        "checkOut" => "2025-08-24",
+        "nationality" => "BR",
+        "skip" => 0,
+        "limit" => 500,
+        "country" => "BR",
+        "city" => "Araçatuba",
+        "rooms" => [
+            [
+                "adults" => 2,
+                "children" => 1,
+                "childrenAge" => [5],
+            ],
+            [
+                "adults" => 3,
+            ],
+        ],
+    ]);
+    print_r($responseHotel);
 } catch (\Ezlink\Exceptions\EzlinkException $ex) {
     var_dump($ex);
 }
