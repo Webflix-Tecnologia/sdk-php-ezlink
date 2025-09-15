@@ -41,11 +41,11 @@ class Api extends \Ezlink\Core\EzlinkHotel {
 
     public function quote(array $body) {
         try {
-            $response = $this->http->post("quote", [
+            $responseResult = $this->http->post("quote", [
                 'json' => $body,
                 'headers' => $this->header()
             ]);
-            $responseData = (string) $response->getBody();
+            $responseData = (string) $responseResult->getBody();
             return json_decode($responseData);
         } catch (\GuzzleHttp\Exception\ServerException $ex) {
 
