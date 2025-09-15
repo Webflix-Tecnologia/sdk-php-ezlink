@@ -39,9 +39,9 @@ class Api extends \Ezlink\Core\EzlinkHotel {
         }
     }
 
-    public function quate(array $body) {
+    public function quote(array $body) {
         try {
-            $response = $this->http->post("quate", [
+            $response = $this->http->post("quote", [
                 'json' => $body,
                 'headers' => $this->header()
             ]);

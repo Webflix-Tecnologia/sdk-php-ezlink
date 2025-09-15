@@ -9,6 +9,17 @@ $apiHotel = new Ezlink\Hotel\Api();
 $apiHotel
     ->setDeveloperKey($config['developerKey']);
 
+try {
+    $responseDetails = $apiHotel
+        ->quote([
+            "searchToken" => "ba4eb080-9255-11f0-bca1-ab0fff83538d",
+            "roomId" => ["ba73ebc1-9255-11f0-ba60-712ac9b8d95f"]
+        ]);
+    var_dump($responseDetails);
+} catch (\Ezlink\Exceptions\EzlinkException $ex) {
+    var_dump($ex);
+}
+
 /*try{
     $responseSearch = $apiHotel->searchByDestinationOrHotelId([
         "checkIn" => "2025-08-16",
@@ -45,7 +56,7 @@ try{
     ]);
     echo json_encode($responseDestinations);
     var_dump($responseDestinations);*/
-    $responseHotel = $apiStatic->searchByHotelInDestination([
+    /*$responseHotel = $apiStatic->searchByHotelInDestination([
         "checkIn" => "2025-08-22",
         "checkOut" => "2025-08-24",
         "nationality" => "BR",
@@ -64,7 +75,7 @@ try{
             ],
         ],
     ]);
-    print_r($responseHotel);
+    print_r($responseHotel);*/
 } catch (\Ezlink\Exceptions\EzlinkException $ex) {
     var_dump($ex);
 }
